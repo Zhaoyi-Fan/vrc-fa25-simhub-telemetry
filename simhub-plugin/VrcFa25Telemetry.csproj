@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>VrcFa25Telemetry</AssemblyName>
+    <RootNamespace>VrcFa25Telemetry</RootNamespace>
+    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <!-- ADJUST THIS to your SimHub install folder if different -->
+    <SimHubPath>C:\Program Files (x86)\SimHub</SimHubPath>
+
+    <!-- Set to true to auto-copy the built DLL into the SimHub folder after build -->
+    <CopyToSimHub>false</CopyToSimHub>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Lets net48 build without a full Visual Studio / dev-pack install (build-only) -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SimHub.Plugins">
+      <HintPath>$(SimHubPath)\SimHub.Plugins.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="GameReaderCommon">
+      <HintPath>$(SimHubPath)\GameReaderCommon.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="CopyToSimHubFolder" AfterTargets="Build" Condition="'$(CopyToSimHub)'=='true'">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SimHubPath)" />
+  </Target>
+
+</Project>
