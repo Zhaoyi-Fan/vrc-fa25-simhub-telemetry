@@ -29,11 +29,29 @@ The struct field **order and types must match** between the Lua `LAYOUT` string 
 
 ## Install
 
-1. **In-game app:** copy `ingame-exporter/` into
-   `…/assettocorsa/apps/lua/vrc_fa25_telemetry/`, then enable it in CSP and add its window
-   on track. `Connected = 1` with an incrementing counter means it's feeding data.
-2. **SimHub plugin:** build it and drop the DLL next to `SimHub.exe`. See
-   [`simhub-plugin/README.md`](simhub-plugin/README.md) for the build/enable steps.
+### Option A — download (recommended, no build needed)
+
+Grab both assets from the [latest release](../../releases/latest):
+
+**1. In-game exporter** — `vrc_fa25_telemetry_ingame_app.zip`
+   1. Extract the zip into `…\assettocorsa\apps\lua\`. You should end up with
+      `…\assettocorsa\apps\lua\vrc_fa25_telemetry\manifest.ini` (and the `.lua` next to it).
+   2. In game (with CSP installed and Lua apps enabled), open the apps sidebar and add the
+      **VRC FA25 Telemetry** window on track.
+   3. The window shows `Connected = 1` with an incrementing counter when it's feeding data.
+
+**2. SimHub plugin** — `VrcFa25Telemetry.dll`
+   1. Close SimHub if it's running.
+   2. Right-click the downloaded DLL → **Properties** → tick **Unblock** (if shown) → OK.
+      Windows marks downloaded DLLs as untrusted and SimHub may silently refuse to load them.
+   3. Copy the DLL next to `SimHub.exe` (default: `C:\Program Files (x86)\SimHub`).
+   4. Start SimHub → it asks about the new plugin → enable it → restart SimHub.
+   5. Properties appear in the property picker under **VRC FA25 Telemetry** (search "Strat").
+
+### Option B — build from source
+
+See [`simhub-plugin/README.md`](simhub-plugin/README.md) for the build steps; the in-game
+half is plain Lua (`ingame-exporter/` → copy as `apps/lua/vrc_fa25_telemetry/`), nothing to build.
 
 ## Notes
 

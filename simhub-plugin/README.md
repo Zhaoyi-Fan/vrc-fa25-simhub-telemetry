@@ -9,7 +9,12 @@ power, maps, wear, etc.). Standard data (speed/rpm/tyres/fuel/ERS%/gaps) stays S
 1. **In game:** the CSP exporter app must be active on track (writes the MMF). See its window.
 2. **SimHub:** this plugin reads the MMF and publishes `VRC FA25 Telemetry` properties.
 
-## Build
+## Install (prebuilt)
+Download `VrcFa25Telemetry.dll` from the [latest release](../../../releases/latest), unblock it
+(right-click → Properties → **Unblock**), copy it next to `SimHub.exe`, then start SimHub and
+enable the plugin when prompted. Full steps in the [root README](../README.md#install).
+
+## Build (from source)
 Requires .NET SDK (or MSBuild/Visual Studio) and a SimHub install (for the reference DLLs).
 
 1. Edit `VrcFa25Telemetry.csproj` → set `<SimHubPath>` to your SimHub folder if it isn't
